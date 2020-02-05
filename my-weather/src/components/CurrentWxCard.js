@@ -7,7 +7,8 @@ const CurrentWxCard = (props) => {
             {props.data.map(info => {
                 return (
                     <div>
-                        <h1>{info.city_name}</h1>
+                        <h1>Location: {info.city_name}, {info.state_code}, {info.country_code}</h1>
+                        <p>Current Temp: {info.temp}</p>
                     </div>
                 )
             })}
