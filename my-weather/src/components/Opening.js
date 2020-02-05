@@ -27,12 +27,9 @@ const useStyles = makeStyles(theme => ({
         margin: '0 auto'
     },
     splashbtn: {
-        width: 100,
+        width: 200,
         marginTop: 20,
-        backgroundColor: '#c62828',
-        '&:hover': {
-            backgroundColor: '#e53935'
-        }
+        backgroundImage: 'linear-gradient(45deg, #64b5f6, #1565c0)',
     },
     btnCont: {
         display: 'flex',
@@ -41,8 +38,13 @@ const useStyles = makeStyles(theme => ({
   }));            
 
 
-const Opening = () => {
+const Opening = (props) => {
     const classes = useStyles();
+
+    const pushToDash = event => {
+        event.preventDefault();
+        props.history.push('/dashboard')
+    };   
     
     return (
         <div>
@@ -54,7 +56,7 @@ const Opening = () => {
                             Welcome to myWeather!
                         </Typography>
                         <div className={classes.btnCont}>
-                            <Button className={classes.splashbtn} variant="contained" color="primary">
+                            <Button onClick={pushToDash} className={classes.splashbtn} variant="contained" color="primary">
                                 Click to get started!
                             </Button>
                         </div>

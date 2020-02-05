@@ -5,6 +5,7 @@ import './App.css';
 // Components imports
 
 import Opening from './components/Opening';
+import Dashboard from './components/Dashboard';
 // React Router imports
 
 import { Route } from 'react-router-dom';
@@ -26,8 +27,9 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider theme={openingtheme}>
-        <Route path='/' component={Opening} />
+        <Route exact path='/' component={Opening} />
       </ThemeProvider>
+      <Route path='/dashboard' component={Dashboard} />
     </div>
   );
 }
