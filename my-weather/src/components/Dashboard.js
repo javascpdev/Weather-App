@@ -5,7 +5,7 @@ import axios from 'axios';
 // Component Imports
 import CurrentWxCard from './CurrentWxCard';
 
-const Dashboard = (props) => {
+const Dashboard = () => {
     const [currentWx, setCurrentWx] = useState([]);
     const [userLocation, setUserLocation] = useState({
         postal_code: ''
@@ -21,7 +21,7 @@ const Dashboard = (props) => {
         axios.get(`https://api.weatherbit.io/v2.0/current?postal_code=${userLocation.postal_code}&key=cd48f97735b04b7289b16e1613d1d2f1`)
         .then(res => {
             console.log(res)
-            setCurrentWx(res.data)
+            setCurrentWx(res.data.data)
         })   
     }
         console.log(currentWx)
@@ -38,7 +38,11 @@ const Dashboard = (props) => {
             <button type="Submit">Get Weather</button>
             </form>
             <div>
-                <CurrentWxCard data={currentWx}/>
+                {currentWx.map(info => {
+                    return (
+                        <CurrentWxCard data={currentWx}/>
+                    )
+                })}
             </div>
         </div>
     );
