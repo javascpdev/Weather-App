@@ -10,7 +10,7 @@ const CurrentWxCard = (props) => {
                 return ( 
                     <div>
                         <div class="weather-icon">
-                            <img src={`../../icons/._${weather}.png`} alt="wx-icon"/>
+                          <img src={`https://www.weatherbit.io/static/img/icons/${weather}.png`} alt="wx-icon"/> 
                         </div>
                         <h1>Location: {info.city_name}, {info.state_code}, {info.country_code}</h1>
                         <p>Current Temp: {info.temp}F</p>
