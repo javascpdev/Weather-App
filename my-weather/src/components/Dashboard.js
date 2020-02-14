@@ -7,44 +7,26 @@ import CurrentWxCard from './CurrentWxCard';
 
 const Dashboard = () => {
     const [currentWx, setCurrentWx] = useState([]);
-    const [userLocation, setUserLocation] = useState({
-        postal_code: ''
-    });
 
-    const handleLocationChange = event => {
-        event.preventDefault();
-        setUserLocation({[event.target.name]: event.target.value})
-    };
+    window.onload = () => {
+        if(navigator.geolocation.getCurrentPosition) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                let lat = position.coords.latitude;
+                let lon = position.coords.longitude;
 
-    // function cToF(celsius) {
-    //     let cTemp = celsius
-    //     let cToFahr = cTemp * 9 / 5 + 32;
-    //     let message = cTemp +'\xB0C is' + cToFahr + ' \xB0F.';
-    //         console.log(message)
-    // }
+                let key = 'cd48f97735b04b7289b16e1613d1d2f1'
 
-    const handleSubmit = event => {
-        event.preventDefault();
-        axios.get(`https://api.weatherbit.io/v2.0/current?postal_code=${userLocation.postal_code}&key=cd48f97735b04b7289b16e1613d1d2f1&units=i`)
-        .then(res => {
-            console.log(res)
-            setCurrentWx(res.data.data)
-        })   
+                axios.get(`https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}&key=${key}`)
+                .then(res => {
+                console.log(res)
+                setCurrentWx(res.data.data)
+                })   
+            })
+        }
     }
-    console.log(currentWx)
-    
+  
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <input
-                label="Zip Code"
-                name="postal_code"
-                type="text"
-                value={userLocation.postal_code} 
-                onChange={handleLocationChange}
-                />
-            <button type="Submit">Get Weather</button>
-            </form>
             <div>
                 {currentWx.map(info => {
                     return (
