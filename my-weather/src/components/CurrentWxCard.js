@@ -1,7 +1,34 @@
 import React from 'react';
 import { CssBaseline, Container, Paper, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles(theme => ({
+    mainCont: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundImage: "url(https://marketplace.canva.com/MADEbjXFeOw/1/thumbnail_large/canva-empty-blue-sky-as-weather-background-MADEbjXFeOw.jpg)",
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        margin: '0 auto'
+    },
+    paper: {
+      padding: theme.spacing(3, 2),
+      width: 400, 
+      height: 250,
+      display: 'flex',
+      flexDirection: 'column',  
+      justifyContent: 'center',
+      backgroundColor: 'rgba(255, 255, 255, 0.3)'
+    },
+}))
+   
+
 
 const CurrentWxCard = (props) => {
+
+    const classes = useStyles();
     // console.log(props)
     return (
         <div>
@@ -12,8 +39,8 @@ const CurrentWxCard = (props) => {
                     <div>
                         <React.Fragment>
                             <CssBaseline/>
-                            <Container>
-                                <Paper>
+                            <Container className={classes.mainCont} maxWidth="100%" style = {{height: '100vh', width: '100vw'}}>
+                                <Paper className={classes.paper}>
                                     <div className="weather-icon">
                                         <img src={`https://www.weatherbit.io/static/img/icons/${weather}.png`} alt="wx-icon"/> 
                                     </div>
