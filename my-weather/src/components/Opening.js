@@ -5,6 +5,7 @@ import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper'; 
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import { useHistory } from 'react-router';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -38,12 +39,13 @@ const useStyles = makeStyles(theme => ({
   }));            
 
 
-const Opening = (props) => {
+const Opening = () => {
     const classes = useStyles();
+    const history = useHistory();
 
     const pushToDash = event => {
         event.preventDefault();
-        props.history.push('/dashboard')
+        history.push('/dashboard')
     };   
     
     return (
