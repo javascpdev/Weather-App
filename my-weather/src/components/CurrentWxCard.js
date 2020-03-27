@@ -1,6 +1,13 @@
 import React from "react";
-import { CssBaseline, Container, Paper, Typography } from "@material-ui/core";
+import {
+  CssBaseline,
+  Container,
+  Paper,
+  Typography,
+  Button
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   mainCont: {
@@ -22,11 +29,22 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column",
     justifyContent: "center",
     backgroundColor: "rgba(255, 255, 255, 0.3)"
+  },
+  extBtn: {
+    width: 150,
+    marginTop: 10
   }
 }));
 
 const CurrentWxCard = ({ data }) => {
   const classes = useStyles();
+
+  let history = useHistory();
+
+  const handlePush = e => {
+    history.push("/fiveday");
+  };
+
   return (
     <div>
       {data.map(info => {
@@ -56,6 +74,14 @@ const CurrentWxCard = ({ data }) => {
                   <Typography>
                     Wind: {info.wind_spd}MPH out of the {info.wind_cdir}
                   </Typography>
+                  <Button
+                    onClick={handlePush}
+                    className={classes.extBtn}
+                    variant="contained"
+                    color="primary"
+                  >
+                    Five Day
+                  </Button>
                 </Paper>
               </Container>
             </React.Fragment>

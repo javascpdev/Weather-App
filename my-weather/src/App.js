@@ -9,6 +9,7 @@ import { Route } from "react-router-dom";
 // Material UI imports
 import { createMuiTheme } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
+import ExtendedFcst from "./components/ExtendedFcst";
 
 const openingtheme = createMuiTheme({
   typography: {
@@ -23,6 +24,7 @@ function App() {
         <Route exact path="/" component={Opening} />
       </ThemeProvider>
       <Route path="/dashboard" component={Dashboard} />
+      <Route path="/fiveday" component={ExtendedFcst} />
     </div>
   );
 }
